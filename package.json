@@ -1,0 +1,24 @@
+{
+  "name": "reactjs",
+  "version": "0.1.0",
+  "description": "test reactjs and webpack",
+  "author": "heymexa@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.12.13",
+    "webpack-loader": "0.0.1"
+  },
+  "dependencies": {
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "events": "^1.1.0",
+    "extend": "^3.0.0",
+    "keymirror": "^0.1.1",
+    "object-assign": "^4.0.1"
+  }
+}
