@@ -1,22 +1,22 @@
-var path = require('path');
+const path = require('path');
 
-var config = {
-    context: path.resolve('public/js'),
+const config = {
+    context: path.resolve('src/js'),
 
     entry: {
         app: './app'
     },
 
     output: {
-        path: path.resolve('./web/js'),
+        path: path.resolve('./build/js'),
         publicPath: '/js/',
-        filename: "build.js"
+        filename: 'build.js'
     },
 
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            include: path.resolve('public/js'),
+            include: path.resolve('src/js'),
             loader: 'babel-loader',
             query: {
                 presets: ['react', 'es2015']
@@ -26,9 +26,7 @@ var config = {
 
     resolve: {
         extensions: ['', '.js', '.jsx']
-    },
-
-    noParse: /\/node_modules\/react\/dist\/react\.min\.js/
+    }
 };
 
 module.exports = config;

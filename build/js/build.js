@@ -20025,21 +20025,21 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _Ul = __webpack_require__(167);
 
 	var _Ul2 = _interopRequireDefault(_Ul);
 
-	var _UlWithBlink = __webpack_require__(172);
+	var _UlWithBlink = __webpack_require__(169);
 
 	var _UlWithBlink2 = _interopRequireDefault(_UlWithBlink);
 
-	var _UlWithBlinkAndBackground = __webpack_require__(173);
+	var _UlWithBlinkAndBackground = __webpack_require__(170);
 
 	var _UlWithBlinkAndBackground2 = _interopRequireDefault(_UlWithBlinkAndBackground);
 
@@ -20055,23 +20055,10 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	/**
-	 * @type {[Ul]}
-	 */
 	var ulFactory = [_Ul2.default, _UlWithBlink2.default, _UlWithBlinkAndBackground2.default];
-
-	/**
-	 * @class App
-	 * @extends React.Component
-	 */
 
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
-
-	    /**
-	     * @public
-	     * @param {object} props
-	     */
 
 	    function App(props) {
 	        _classCallCheck(this, App);
@@ -20084,25 +20071,20 @@
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
-	        var dataItems = _this.props.data.reduce(function (items, item) {
-	            items.push({
+	        var dataItems = _this.props.data.map(function (item) {
+	            return {
 	                items: item,
 	                changed: false
-	            });
-	            return items;
-	        }, []);
+	            };
+	        });
 
 	        _this.state = {
 	            data: dataItems
 	        };
+
+	        _this.handleDrop = _this.handleDrop.bind(_this);
 	        return _this;
 	    }
-
-	    /**
-	     * @private
-	     * @param {object} data
-	     * @param {Ul} ul
-	     */
 
 	    _createClass(App, [{
 	        key: 'handleDrop',
@@ -20129,23 +20111,15 @@
 	                data: dataItems
 	            });
 	        }
-
-	        /**
-	         * @returns {object}
-	         */
-
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
 
-	            var uls = this.state.data.reduce(function (data, dataItems) {
-	                var index = data.length;
+	            var uls = this.state.data.map(function (dataItems, index) {
 	                var UlClass = ulFactory[index];
-	                data.push(_react2.default.createElement(UlClass, { key: index, changed: dataItems.changed, id: index, items: dataItems.items,
-	                    handleDrop: _this2.handleDrop.bind(_this2) }));
-	                return data;
-	            }, []);
+	                return _react2.default.createElement(UlClass, { key: index, changed: dataItems.changed, id: index, items: dataItems.items, handleDrop: _this2.handleDrop });
+	            });
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -20158,7 +20132,11 @@
 	}(_react2.default.Component);
 
 	exports.default = App;
-	;
+
+
+	App.propTypes = {
+	    data: _react2.default.PropTypes.array
+	};
 
 /***/ },
 /* 167 */
@@ -20166,11 +20144,11 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
@@ -20188,72 +20166,41 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	/**
-	 * @class Ul
-	 * @extends React.Component
-	 */
-
 	var Ul = function (_React$Component) {
 	    _inherits(Ul, _React$Component);
 
-	    function Ul() {
+	    function Ul(props) {
 	        _classCallCheck(this, Ul);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Ul).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Ul).call(this, props));
+
+	        _this.state = {
+	            changed: props.changed
+	        };
+
+	        _this.onAnimationEnd = _this.onAnimationEnd.bind(_this);
+	        _this.onDrop = _this.onDrop.bind(_this);
+	        return _this;
 	    }
 
 	    _createClass(Ul, [{
-	        key: 'componentWillMount',
-
-	        /**
-	         * @public
-	         */
-	        value: function componentWillMount() {
-	            this.setState({
-	                changed: this.props.changed
-	            });
-	        }
-
-	        /**
-	         * @public
-	         * @param {object} nextProps
-	         */
-
-	    }, {
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
 	            this.setState({
 	                changed: nextProps.changed
 	            });
 	        }
-
-	        /**
-	         * @private
-	         * @param {object} event
-	         */
-
 	    }, {
 	        key: 'onDrop',
 	        value: function onDrop(event) {
 	            var data = JSON.parse(event.dataTransfer.getData('text'));
 	            this.props.handleDrop(data, this);
 	        }
-
-	        /**
-	         * @private
-	         * @param {object} event
-	         */
-
 	    }, {
 	        key: 'onDragOver',
 	        value: function onDragOver(event) {
 	            event.preventDefault();
 	        }
-
-	        /**
-	         * @private
-	         */
-
 	    }, {
 	        key: 'onAnimationEnd',
 	        value: function onAnimationEnd() {
@@ -20261,37 +20208,29 @@
 	                changed: false
 	            });
 	        }
-
-	        /**
-	         * @protected
-	         * @returns {string}
-	         */
-
 	    }, {
 	        key: 'getClassName',
 	        value: function getClassName() {
 	            return '';
 	        }
-
-	        /**
-	         * @returns {object}
-	         */
-
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
 
-	            var items = this.props.items.reduce(function (items, item) {
-	                items.push(_react2.default.createElement(_Li2.default, { key: items.length, parentId: _this2.props.id, id: items.length, draggable: true,
-	                    text: item }));
-	                return items;
-	            }, []);
+	            var liOptions = this.props.items.map(function (item, index) {
+	                return _react2.default.createElement(_Li2.default, { key: index, parentId: _this2.props.id, id: index, draggable: true, text: item });
+	            });
 
+	            var className = this.state.changed ? this.props.className : '';
 	            return _react2.default.createElement(
-	                'ul',
-	                { className: this.getClassName(), onAnimationEnd: this.onAnimationEnd.bind(this), onDrop: this.onDrop.bind(this), onDragOver: this.onDragOver.bind(this) },
-	                items
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: className, onAnimationEnd: this.onAnimationEnd, onDrop: this.onDrop, onDragOver: this.onDragOver },
+	                    liOptions
+	                )
 	            );
 	        }
 	    }]);
@@ -20301,17 +20240,27 @@
 
 	exports.default = Ul;
 
+
+	Ul.propTypes = {
+	    changed: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    handleDrop: _react2.default.PropTypes.func,
+	    id: _react2.default.PropTypes.number,
+	    items: _react2.default.PropTypes.array,
+	    text: _react2.default.PropTypes.string
+	};
+
 /***/ },
 /* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
@@ -20325,41 +20274,29 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	/**
-	 * @class Li
-	 * @extends {React.Component}
-	 */
-
 	var Li = function (_React$Component) {
 	    _inherits(Li, _React$Component);
 
-	    function Li() {
+	    function Li(props) {
 	        _classCallCheck(this, Li);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Li).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Li).call(this, props));
+
+	        _this.onDragStart = _this.onDragStart.bind(_this);
+	        return _this;
 	    }
 
 	    _createClass(Li, [{
-	        key: '_onDragStart',
-
-	        /**
-	         * @param {object} event
-	         * @private
-	         */
-	        value: function _onDragStart(event) {
+	        key: 'onDragStart',
+	        value: function onDragStart(event) {
 	            event.dataTransfer.setData('text/plain', JSON.stringify(this.props));
 	        }
-
-	        /**
-	         * @returns {object}
-	         */
-
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'li',
-	                { onDragStart: this._onDragStart.bind(this), draggable: this.props.draggable },
+	                { onDragStart: this.onDragStart, draggable: this.props.draggable },
 	                this.props.text
 	            );
 	        }
@@ -20370,120 +20307,67 @@
 
 	exports.default = Li;
 
+
+	Li.propTypes = {
+	    draggable: _react2.default.PropTypes.bool,
+	    text: _react2.default.PropTypes.string
+	};
+
 /***/ },
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
-	var _Ul2 = __webpack_require__(167);
-
-	var _Ul3 = _interopRequireDefault(_Ul2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	/**
-	 * @class UlWithBlink
-	 * @extends Ul
-	 */
-
-	var UlWithBlink = function (_Ul) {
-	  _inherits(UlWithBlink, _Ul);
-
-	  function UlWithBlink() {
-	    _classCallCheck(this, UlWithBlink);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UlWithBlink).apply(this, arguments));
-	  }
-
-	  _createClass(UlWithBlink, [{
-	    key: 'getClassName',
-
-	    /**
-	     * @protected
-	     * @returns {string}
-	     */
-	    value: function getClassName() {
-	      return this.state.changed ? 'blink' : '';
-	    }
-	  }]);
-
-	  return UlWithBlink;
-	}(_Ul3.default);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	exports.default = UlWithBlink;
 
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Ul = __webpack_require__(167);
+
+	var _Ul2 = _interopRequireDefault(_Ul);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function UlWithBlink(props) {
+	    return _react2.default.createElement(_Ul2.default, _extends({}, props, { className: 'blink' }));
+	}
+
 /***/ },
-/* 173 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
-	var _UlWithBlink2 = __webpack_require__(172);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _UlWithBlink3 = _interopRequireDefault(_UlWithBlink2);
+	exports.default = UlWithBlinkAndBackground;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Ul = __webpack_require__(167);
+
+	var _Ul2 = _interopRequireDefault(_Ul);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	/**
-	 * @class UlWithBlinkAndBackground
-	 * @extends UlWithBlink
-	 */
-
-	var UlWithBlinkAndBackground = function (_UlWithBlink) {
-	  _inherits(UlWithBlinkAndBackground, _UlWithBlink);
-
-	  function UlWithBlinkAndBackground() {
-	    _classCallCheck(this, UlWithBlinkAndBackground);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UlWithBlinkAndBackground).apply(this, arguments));
-	  }
-
-	  _createClass(UlWithBlinkAndBackground, [{
-	    key: 'getClassName',
-
-	    /**
-	     * @protected
-	     * @returns {string}
-	     */
-	    value: function getClassName() {
-	      return this.state.changed ? _get(Object.getPrototypeOf(UlWithBlinkAndBackground.prototype), 'getClassName', this).call(this) + ' background-red' : '';
-	    }
-	  }]);
-
-	  return UlWithBlinkAndBackground;
-	}(_UlWithBlink3.default);
-
-	exports.default = UlWithBlinkAndBackground;
+	function UlWithBlinkAndBackground(props) {
+	    return _react2.default.createElement(_Ul2.default, _extends({}, props, { className: 'blink background-red' }));
+	}
 
 /***/ }
 /******/ ]);

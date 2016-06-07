@@ -1,0 +1,20 @@
+ul {
+    border: 2px solid #fff;
+}
+
+.blink {
+    animation: blink 1s;
+}
+
+.background-red {
+    background-color: red;
+}
+
+@keyframes blink {
+    0% {
+        border-color: red;
+    }
+    100% {
+        border-color: white;
+    }
+}
